@@ -5,11 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="../../../static/css/login.css">
 </head>
 <body>
     <header>
-        <img id="logo" src="../../../../resources/static/logo/logo.jpg" alt="">
+        <img id="logo" src="../../../static/img/logo.jpg" alt="">
         
     </header>
     <div class="container">

@@ -5,12 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="../../../static/css/agenda.css">
 </head>
 <body>
     <header>
         <div id="top-bar">
-            <img id="logo" src="../../../../resources/static/logo/logo.jpg" alt="">
+            <img id="logo" src="../../../static/img/logo.jpg" alt="">
             <ul class="opcoes">
                 <li id="opcao1"><a href="/sismed/">Home</a></li>
                 <li id="opcao2"><a href="/sismed/anamnese">Anamnese</a></li>
