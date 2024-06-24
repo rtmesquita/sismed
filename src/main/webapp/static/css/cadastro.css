@@ -12,7 +12,7 @@ header{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    
+
 }
 
 
@@ -20,7 +20,7 @@ header{
     height: 75px;
     width: auto;
     border-radius: 50%;
-    
+
 }
 
 .container{
@@ -28,7 +28,7 @@ header{
     align-items: center;
     justify-content: center;
 }
-.login-box{
+.cadastro-box{
     height: 300px;
     width: 300px;
     display: flex;
@@ -41,10 +41,10 @@ header{
     border: 2px solid #000;
 
 }
-
 #titulo{
     margin: 5px;
 }
+
 #usuário{
     display: flex;
     flex-direction: column;
@@ -60,7 +60,7 @@ header{
 #senha-box{
     margin: 5px;
 }
-#login-button{
+#cadastro-button{
     width: 100px;
     height: 25px;
     margin: 5px;
@@ -69,7 +69,7 @@ header{
     transition: 0.5s;
 }
 
-#login-button:hover{
+#cadastro-button:hover{
     background-color: #008080;
     cursor: pointer;
     color: white;

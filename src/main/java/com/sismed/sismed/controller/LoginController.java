@@ -9,4 +9,10 @@ public class LoginController {
     public String index () {
         return "login/index";
     }
+
+    @RequestMapping("/login/cadastro")
+    public String cadastro (){
+        return "login/cadastro";
+    }
 }
+
