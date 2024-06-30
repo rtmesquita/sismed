@@ -2,10 +2,14 @@ package com.sismed.sismed.controller;
 
 import com.sismed.sismed.model.User;
 import com.sismed.sismed.repository.UserRepository;
+import com.sismed.sismed.security.CookieService;
 import com.sismed.sismed.security.TokenService;
 import com.sismed.sismed.util.AuthenticationDTO;
 import com.sismed.sismed.util.LoginResponseDTO;
 import com.sismed.sismed.util.RegisterDTO;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -29,7 +33,7 @@ public class AuthenticationController {
     TokenService tokenService;
 
     @PostMapping("/login")
-    public ResponseEntity login(@RequestBody @Valid AuthenticationDTO data) {
+    public ResponseEntity login(@RequestBody @Valid AuthenticationDTO data, HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
         var usernamePassword = new UsernamePasswordAuthenticationToken(data.login(), data.password());
         var auth = authenticationManager.authenticate(usernamePassword);
         var token = tokenService.generateToken((User) auth.getPrincipal());
