@@ -37,8 +37,8 @@ public class User implements UserDetails {
     // Métodos da Interface UserDetails para gerenciamento do Spring Security
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        if (role == UserRole.MEDICO) return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"));
-        else return List.of(new SimpleGrantedAuthority("ROLE_USER"));
+        if (role == UserRole.MEDICO) return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"), new SimpleGrantedAuthority("ROLE_USER"));
+        return List.of(new SimpleGrantedAuthority("ROLE_USER"));
     }
 
     @Override
@@ -73,9 +73,9 @@ public class User implements UserDetails {
 
     @Override
     public String toString() {
-        return "Usuario{" +
+        return "User{" +
                 "id=" + id +
-                ", login='" + login +
+                ", login=" + login +
                 ", password=" + password +
                 ", role=" + role +
                 '}';

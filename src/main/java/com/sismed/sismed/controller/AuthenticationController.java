@@ -2,7 +2,9 @@ package com.sismed.sismed.controller;
 
 import com.sismed.sismed.model.User;
 import com.sismed.sismed.repository.UserRepository;
+import com.sismed.sismed.security.TokenService;
 import com.sismed.sismed.util.AuthenticationDTO;
+import com.sismed.sismed.util.LoginResponseDTO;
 import com.sismed.sismed.util.RegisterDTO;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,13 +25,16 @@ public class AuthenticationController {
     AuthenticationManager authenticationManager;
     @Autowired
     UserRepository userRepository;
+    @Autowired
+    TokenService tokenService;
 
     @PostMapping("/login")
     public ResponseEntity login(@RequestBody @Valid AuthenticationDTO data) {
         var usernamePassword = new UsernamePasswordAuthenticationToken(data.login(), data.password());
         var auth = authenticationManager.authenticate(usernamePassword);
+        var token = tokenService.generateToken((User) auth.getPrincipal());
 
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok(new LoginResponseDTO(token));
     }
 
     @PostMapping("/register")
