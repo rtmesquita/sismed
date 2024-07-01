@@ -27,12 +27,20 @@ public class SecurityConfigurations {
         return httpSecurity.csrf(csrf -> csrf.disable()).
                 sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)).
                 authorizeHttpRequests(authorize -> authorize
+                        // TODO - Retirar (ver com o Rapha)
                         .dispatcherTypeMatchers(DispatcherType.FORWARD, DispatcherType.ERROR, DispatcherType.INCLUDE, DispatcherType.REQUEST).permitAll()
-                        .requestMatchers("/anamnese").hasRole("MEDICO")
+                        .requestMatchers("/anamnese").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/auth/register").hasRole("ADMIN")
                         .requestMatchers("/login").permitAll()
                         .anyRequest().authenticated()
                 )
+                // TODO - Testar depois que resolvermos o TODO acima
+//                .formLogin(form -> {
+//                    form.loginPage("/login").defaultSuccessUrl("/");
+//                }).logout(logout -> {
+//                    logout.logoutUrl("");
+//                })
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }

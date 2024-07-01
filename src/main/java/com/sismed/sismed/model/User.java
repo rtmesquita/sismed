@@ -2,6 +2,8 @@ package com.sismed.sismed.model;
 
 import com.sismed.sismed.util.UserRole;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -16,14 +18,17 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @Size(max = 100)
     private String login;
+    @Size(max = 100)
     private String password;
-    private UserRole role;
+    @Size(max = 20)
+    private String role;
 
     public User() {
 
     }
-    public User(String login, String password, UserRole role) {
+    public User(String login, String password, String role) {
         this.login = login;
         this.password = password;
         this.role = role;
@@ -34,10 +39,18 @@ public class User implements UserDetails {
         this.password = password;
     }
 
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
     // Métodos da Interface UserDetails para gerenciamento do Spring Security
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        if (role == UserRole.MEDICO) return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"), new SimpleGrantedAuthority("ROLE_USER"));
+        if (role.equals("MEDICO")) return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"), new SimpleGrantedAuthority("ROLE_USER"));
         return List.of(new SimpleGrantedAuthority("ROLE_USER"));
     }
 

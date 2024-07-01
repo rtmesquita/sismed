@@ -20,18 +20,28 @@
         <div id="titulo">
             Cadastrar
         </div>
-        <div id="usuário">
-            <label for="Usuário">Usuário</label>
-            <input type="text" id="usuário-box">
-
-        </div>
-
-        <div id="senha">
-            <label for="senha">Senha</label>
-            <input type="password" id="senha-box">
-        </div>
-
-        <button id="cadastro-button">Cadastrar</button>
+        <form action="/sismed/auth/register" method="post">
+            <div id="usuário">
+                <label for="usuário-box">Usuário</label>
+                <input type="text" id="usuário-box" name="login">
+            </div>
+            <div id="senha">
+                <label for="senha-box">Senha</label>
+                <input type="password" id="senha-box" name="password">
+            </div>
+            <div id="usuário">
+<%--                <label for="usuário-box">Perfil</label>--%>
+<%--                <input type="text" id="role-box" name="role">--%>
+                <label for="perfil-box">Perfil</label>
+                <select name="role" id="perfil-box">
+                    <option type="text" value="SECRETARIO">Secretário</option>
+                    <option type="text" value="MEDICO">Médico</option>
+                </select>
+            </div>
+            <%
+            %>
+            <input id="login-button" type="submit" value="Submit">
+        </form>
 
     </div>
 </div>

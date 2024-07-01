@@ -15,7 +15,18 @@ public class CookieService {
         httpServletResponse.addCookie(cookie);
     }
 
-    public static String getCookie(HttpServletRequest httpServletRequest, String chave) {
+    public static void updateCookie(HttpServletResponse httpServletResponse, Cookie cookie, String valor, int tempoExpiracao) {
+        cookie.setValue(valor);
+        cookie.setMaxAge(tempoExpiracao);
+        httpServletResponse.addCookie(cookie);
+    }
+
+    public static void removeCookie(HttpServletResponse httpServletResponse, Cookie cookie) {
+        cookie.setMaxAge(-1);
+        httpServletResponse.addCookie(cookie);
+    }
+
+    public static String getCookieValue(HttpServletRequest httpServletRequest, String chave) {
         // Verificar se o cookie é nulo ou não
         return Optional.ofNullable(httpServletRequest.getCookies())
                 // Caso exista cookies, criar um array de cookies
@@ -27,6 +38,19 @@ public class CookieService {
                 )
                 // trazer o valor do cookie filtrado
                 .map(e -> e.getValue())
+                // Caso o cookie não exista retorna nulo
+                .orElse(null);
+    }
+
+    public static Cookie getCookie(HttpServletRequest httpServletRequest, String chave) {
+        return Optional.ofNullable(httpServletRequest.getCookies())
+                // Caso exista cookies, criar um array de cookies
+                .flatMap(cookies -> Arrays.stream(cookies)
+                        // Filtrar os cookies pela chave cadastrada
+                        .filter(cookie -> chave.equals(cookie.getName()))
+                        // Trazer o cookie filtrado
+                        .findAny()
+                )
                 // Caso o cookie não exista retorna nulo
                 .orElse(null);
     }

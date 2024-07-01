@@ -1,5 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,7 +22,7 @@
             <div id="titulo">
                 Login
             </div>
-            <form action="/sismed/auth/login" method="post" typeof="json">
+            <form action="/sismed/auth/login" method="post">
                 <div id="usuário">
                     <label for="usuário-box">Usuário</label>
                     <input type="text" id="usuário-box" name="login">
@@ -29,9 +31,6 @@
                     <label for="senha-box">Senha</label>
                     <input type="password" id="senha-box" name="password">
                 </div>
-                <%
-                    out.println("${param}");
-                %>
                 <input id="login-button" type="submit" value="Submit">
             </form>
         </div>
