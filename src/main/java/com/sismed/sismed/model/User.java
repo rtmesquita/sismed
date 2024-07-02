@@ -1,8 +1,6 @@
 package com.sismed.sismed.model;
 
-import com.sismed.sismed.util.UserRole;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
