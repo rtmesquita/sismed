@@ -4,14 +4,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/login")
+
 public class LoginController {
-    @RequestMapping("")
+    @RequestMapping("/loginPage")
     public String index () {
         return "login/index";
     }
 
-    @RequestMapping("/cadastro")
+    @RequestMapping("/cadastroPage")
     public String cadastro (){
         return "login/cadastro";
     }

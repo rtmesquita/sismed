@@ -16,7 +16,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/auth")
+@RequestMapping("")
 public class AuthenticationController {
 
     @Autowired
@@ -27,26 +27,20 @@ public class AuthenticationController {
     TokenService tokenService;
 
     @PostMapping("/login")
-    public String login(@Valid User user, HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
+    public ResponseEntity login(@Valid User user, HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
         var usernamePassword = new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword());
         var auth = authenticationManager.authenticate(usernamePassword);
         var token = tokenService.generateToken((User) auth.getPrincipal());
 
         // 31 para expirar
         int tempoExpiracao = 31*24*60*60;
-        Cookie cookie = CookieService.getCookie(httpServletRequest, "token");
-        if (cookie == null) {
-            CookieService.setCookie(httpServletResponse, "token", token, tempoExpiracao);
-        } else {
-            CookieService.updateCookie(httpServletResponse, cookie, token, tempoExpiracao);
 
-        }
-
-        return "home/index";
+        CookieService.setCookie(httpServletResponse, "token", token, tempoExpiracao);
+        return ResponseEntity.ok().build();
     }
 
     @PostMapping("/register")
-    public ResponseEntity cadastro(@Valid User user) {
+    public ResponseEntity cadastro(@RequestBody @Valid User user) {
         if (this.userRepository.findByLogin(user.getUsername()) != null) return ResponseEntity.badRequest().build();
 
         String passwordEncriptado = new BCryptPasswordEncoder().encode(user.getPassword());

@@ -50,8 +50,9 @@ public class User implements UserDetails {
     // Métodos da Interface UserDetails para gerenciamento do Spring Security
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        if (role.equals("MEDICO")) return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"), new SimpleGrantedAuthority("ROLE_USER"));
-        return List.of(new SimpleGrantedAuthority("ROLE_USER"));
+        if (role.equals("ADMIN")) return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"), new SimpleGrantedAuthority("ROLE_MEDICO"));
+        else if (role.equals("MEDICO")) return List.of(new SimpleGrantedAuthority("ROLE_MEDICO"));
+        else return null;
     }
 
     @Override

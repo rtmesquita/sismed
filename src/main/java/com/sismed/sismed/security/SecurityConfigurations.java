@@ -24,34 +24,33 @@ public class SecurityConfigurations {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
-        return httpSecurity.csrf(csrf -> csrf.disable()).
-                sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)).
-                authorizeHttpRequests(authorize -> authorize
-                        // TODO - Retirar (ver com o Rapha)
-                        .dispatcherTypeMatchers(DispatcherType.FORWARD, DispatcherType.ERROR, DispatcherType.INCLUDE, DispatcherType.REQUEST).permitAll()
-                        .requestMatchers("/anamnese").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/auth/register").hasRole("ADMIN")
-                        .requestMatchers("/login").permitAll()
-                        .anyRequest().authenticated()
+        return httpSecurity.csrf(csrf -> csrf.disable())
+                .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
+                .authorizeHttpRequests(authorize ->
+                        authorize
+                                .requestMatchers("/cadastroPage").hasRole("ADMIN")
+                                .requestMatchers(HttpMethod.POST, "/register").hasRole("ADMIN")
+                                .requestMatchers("/anamnese").hasRole("MEDICO")
+                                .anyRequest().authenticated()
                 )
                 // TODO - Testar depois que resolvermos o TODO acima
-//                .formLogin(form -> {
-//                    form.loginPage("/login").defaultSuccessUrl("/");
-//                }).logout(logout -> {
+                .formLogin(form -> {
+                    form.loginPage("/").defaultSuccessUrl("/").permitAll();
+                })
+//                .logout(logout -> {
 //                    logout.logoutUrl("");
 //                })
-                .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .build();
     }
 
     @Bean
-    public AuthenticationManager authenticationManager (AuthenticationConfiguration authenticationConfiguration) throws Exception {
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
         return authenticationConfiguration.getAuthenticationManager();
     }
 
     @Bean
-    public PasswordEncoder passwordEncoder () {
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 }
