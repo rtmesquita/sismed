@@ -5,7 +5,6 @@ import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "usuario")
-// Vinculando o Usuario como User de autenticação: interface UserDetails
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
