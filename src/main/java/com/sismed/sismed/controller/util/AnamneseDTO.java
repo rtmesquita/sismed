@@ -1,33 +1,35 @@
-package com.sismed.sismed.model;
+package com.sismed.sismed.controller.util;
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.Size;
 
-@Entity
-@Table(name = "anamnese")
-public class Anamnese {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+import com.sismed.sismed.model.Anamnese;
+import com.sismed.sismed.model.Medico;
+import com.sismed.sismed.model.Paciente;
+
+public class AnamneseDTO {
     private long id;
-    @ManyToOne
-    @JoinColumn(name = "id_paciente")
     private Paciente paciente;
-    @ManyToOne
-    @JoinColumn(name = "id_medico")
     private Medico medico;
-    @Size(max = 300)
     private String queixa;
-    @Size(max = 1000)
     private String historia;
-    @Column(name = "tratamento_medico")
     private Boolean tratamentoMedico;
-    @Size(max = 100)
     private String alergia;
     private Boolean cirurgia;
     private Boolean gestante;
     private Boolean fumante;
 
-    public Anamnese() {}
+    public AnamneseDTO(Anamnese anamnese, Medico medico, Paciente paciente) {
+        this.id = anamnese.getId();
+        this.queixa = anamnese.getQueixa();
+        this.historia = anamnese.getHistoria();
+        this.tratamentoMedico = anamnese.getTratamentoMedico();
+        this.alergia = anamnese.getAlergia();
+        this.cirurgia = anamnese.getCirurgia();
+        this.gestante = anamnese.getGestante();
+        this.fumante = anamnese.getFumante();
+
+        this.medico = medico;
+        this.paciente = paciente;
+    }
 
     public long getId() {
         return id;
@@ -111,10 +113,10 @@ public class Anamnese {
 
     @Override
     public String toString() {
-        return "Anamnese{" +
+        return "AnamneseDTO{" +
                 "id=" + id +
-                ", Paciente=" + paciente +
-                ", Medico=" + medico +
+                ", paciente=" + paciente +
+                ", medico=" + medico +
                 ", queixa='" + queixa + '\'' +
                 ", historia='" + historia + '\'' +
                 ", tratamentoMedico=" + tratamentoMedico +
