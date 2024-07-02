@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" type="text/css" href="<c:url value="/static/css/anamnese.css"/> ">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/static/css/atendimento.css"/> ">
 </head>
 <body>
     <header>
@@ -14,7 +14,7 @@
             <img id="logo" src="<c:url value="/static/img/logo.jpg"/>" alt="">
             <ul class="opcoes">
                 <li id="opcao1"><a href="/sismed/">Home</a></li>
-                <li id="opcao2"><a href="/sismed/anamnese">Anamnese</a></li>
+                <li id="opcao2"><a href="/sismed/atendimento">Atendimento</a></li>
                 <li id="opcao3"><a href="/sismed/agenda">Agenda</a></li>
             </ul>
 
@@ -26,7 +26,7 @@
         
         <div class="main-content">
             <div class="header">
-                <h1>Anamnese</h1>
+                <h1>Atendimento</h1>
                 <div class="user-info">
                     <img src="https://via.placeholder.com/30" alt="Usuário">
                     <span>Nome | Empresa de Teste</span>

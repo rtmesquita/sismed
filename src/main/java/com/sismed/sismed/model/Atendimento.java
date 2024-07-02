@@ -4,8 +4,8 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 
 @Entity
-@Table(name = "anamnese")
-public class Anamnese {
+@Table(name = "atendimento")
+public class Atendimento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -27,7 +27,7 @@ public class Anamnese {
     private Boolean gestante;
     private Boolean fumante;
 
-    public Anamnese() {}
+    public Atendimento() {}
 
     public long getId() {
         return id;
@@ -111,7 +111,7 @@ public class Anamnese {
 
     @Override
     public String toString() {
-        return "Anamnese{" +
+        return "Atendimento{" +
                 "id=" + id +
                 ", Paciente=" + paciente +
                 ", Medico=" + medico +

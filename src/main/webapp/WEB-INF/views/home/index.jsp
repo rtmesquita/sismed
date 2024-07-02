@@ -16,7 +16,7 @@
         <img id="logo" src="<c:url value="/static/img/logo.jpg"/>" alt="">
         <ul class="opcoes">
             <li class="opcao"><a href="/sismed/">Home</a></li>
-            <li class="opcao"><a href="/sismed/anamnese">Anamnese</a></li>
+            <li class="opcao"><a href="/sismed/atendimento">Anamnese</a></li>
             <li class="opcao"><a href="/sismed/agenda">Agenda</a></li>
         </ul>
 

@@ -14,7 +14,7 @@ CREATE TABLE paciente
     data_nascimento DATE NOT NULL
 );
 
-CREATE TABLE anamnese
+CREATE TABLE atendimento
 (
     id INTEGER PRIMARY KEY UNIQUE NOT NULL AUTO_INCREMENT,
     id_paciente INTEGER NOT NULL,
