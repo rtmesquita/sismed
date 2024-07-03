@@ -21,6 +21,11 @@ public class AtendimentoController {
         return "atendimento/index";
     }
 
+    @RequestMapping("/atendimento/visualizacao")
+    public String visualizacao () {
+        return "atendimento/visualizacao";
+    }
+
     @PostMapping("/listaAtendimentos")
     public ResponseEntity listarAtendimento() {
 
