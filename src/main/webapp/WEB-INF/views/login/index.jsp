@@ -1,5 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,20 +22,17 @@
             <div id="titulo">
                 Login
             </div>
-            <div id="usuário">
-                <label for="Usuário">Usuário</label>
-                <input type="text" id="usuário-box">
-    
-            </div>
-            <!--� preciso colocar a senha para escrever em asteristico com
-             alguma api no futuro para melhor seguran�a-->
-            <div id="senha">
-                <label for="senha">Senha</label>
-                <input type="password" id="senha-box">
-            </div>
-
-            <button id="login-button">Login</button>
-    
+            <form action="login" method="post">
+                <div id="usuário">
+                    <label for="usuário-box">Usuário</label>
+                    <input type="text" id="usuário-box" name="login">
+                </div>
+                <div id="senha">
+                    <label for="senha-box">Senha</label>
+                    <input type="password" id="senha-box" name="password">
+                </div>
+                <input id="login-button" type="submit" value="Submit">
+            </form>
         </div>
     </div>
 </body>
