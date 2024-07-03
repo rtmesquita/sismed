@@ -6,21 +6,109 @@
 
 header{
     padding: 10px;
-    height: 75px;
-    width: cover;
+    height: 100px;
+    width: 100%;
     background-color: #00CED1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    list-style: none;
+
+}
+#top-bar{
+    width: 90%;
+    display: flex;
+
+}
+
+/* Estilos básicos para o menu */
+.menu_principal {
+    list-style: none;
+    margin: 0;
+    padding: 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
 
 }
 
+.menu_principal li {
+    display: inline;
+    justify-content: space-between;
+    margin-left: 30px;
+}
+
+/* Estilos para os itens do menu principal */
+.menu_principal li a {
+    text-decoration: none;
+    padding: 10px;
+}
+
+/* Estilos para os submenus */
+.menu_principal li ul {
+    list-style: none;
+    position: absolute;
+    display: none;
+    background-color: #00CED1;
+    padding: 10px;
+    z-index: 1;
+    border: 2px solid #000;
+    border-radius: 10px;
+    transition: 1s;
+}
+
+/* Estilos para posicionar os submenus */
+.menu_principal li:hover ul {
+    display: block;
+}
+
+.menu_principal li ul li {
+    margin-bottom: 10px;
+}
+.opcoes{
+    width: 300px;
+    margin-left: 30px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+
+}
+.opcao{
+    padding: 5px;
+    list-style: none;
+    border: 2px solid #000;
+    background-color: #D3D3D3;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: 0.2s;
+
+}
+.opcao:hover{
+    background-color: #008080;
+    color: white;
+
+}
+
+#loginButton{
+    margin: 15px;
+    height: 50px;
+    width: 75px;
+    border-radius: 20%;
+    background-color: #D3D3D3;
+    transition: 0.5s;
+
+}
+#loginButton:hover{
+    background-color: #008080;
+    cursor: pointer;
+    color: white;
+}
 
 #logo{
     height: 75px;
     width: auto;
     border-radius: 50%;
-
 }
 
 .container{
