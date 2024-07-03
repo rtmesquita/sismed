@@ -16,13 +16,13 @@
         <img id="logo" src="<c:url value="/static/img/logo.jpg"/>" alt="">
         <ul class="opcoes">
             <li class="opcao"><a href="/sismed/">Home</a></li>
-            <li class="opcao"><a href="/sismed/atendimento">Anamnese</a></li>
-            <li class="opcao"><a href="/sismed/agenda">Agenda</a></li>
+            <li class="opcao"><a href="/sismed/atendimentoPage">Atendimento</a></li>
+            <li class="opcao"><a href="/sismed/agendaPage">Agenda</a></li>
         </ul>
 
     </div>
 
-    <button id="loginButton">Login</button>
+    <a id="logoutButton" href="/sismed/deslogar"><button id="">Logout</button></a>
 </header>
 
 <div id="central-box">

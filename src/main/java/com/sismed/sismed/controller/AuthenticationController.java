@@ -14,9 +14,9 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 @RestController
-@RequestMapping("")
 public class AuthenticationController {
 
     @Autowired
@@ -27,7 +27,7 @@ public class AuthenticationController {
     TokenService tokenService;
 
     @PostMapping("/login")
-    public ResponseEntity login(@Valid User user, HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
+    public ModelAndView login(@Valid User user, HttpServletResponse httpServletResponse) {
         var usernamePassword = new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword());
         var auth = authenticationManager.authenticate(usernamePassword);
         var token = tokenService.generateToken((User) auth.getPrincipal());
@@ -36,7 +36,8 @@ public class AuthenticationController {
         int tempoExpiracao = 31*24*60*60;
 
         CookieService.setCookie(httpServletResponse, "token", token, tempoExpiracao);
-        return ResponseEntity.ok().build();
+//        return ResponseEntity.ok().build();
+        return new ModelAndView("redirect:/");
     }
 
     @PostMapping("/register")
@@ -50,13 +51,14 @@ public class AuthenticationController {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/logout")
-    public ResponseEntity logout(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
+    @GetMapping("/deslogar")
+    public ModelAndView logout(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
+
         Cookie cookie = CookieService.getCookie(httpServletRequest, "token");
         if (cookie != null) {
             CookieService.removeCookie(httpServletResponse, cookie);
         }
 
-        return ResponseEntity.ok().build();
+        return new ModelAndView("redirect:/loginPage");
     }
 }

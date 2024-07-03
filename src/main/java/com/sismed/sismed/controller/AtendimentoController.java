@@ -16,7 +16,7 @@ public class AtendimentoController {
     @Autowired
     AtendimentoRepository atendimentoRepository;
 
-    @RequestMapping("/atendimento")
+    @RequestMapping("/atendimentoPage")
     public String index () {
         return "atendimento/index";
     }

@@ -26,21 +26,18 @@ public class SecurityConfigurations {
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity.csrf(csrf -> csrf.disable())
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize ->
                         authorize
                                 .requestMatchers("/cadastroPage").hasRole("ADMIN")
                                 .requestMatchers(HttpMethod.POST, "/register").hasRole("ADMIN")
-                                .requestMatchers("/anamnese").hasRole("MEDICO")
-                                .anyRequest().authenticated()
+                                .requestMatchers("/atendimentoPage").hasAnyRole("MEDICO", "ADMIN")
+                                .requestMatchers("/").authenticated()
+                                .anyRequest().permitAll()
                 )
-                // TODO - Testar depois que resolvermos o TODO acima
                 .formLogin(form -> {
-                    form.loginPage("/").defaultSuccessUrl("/").permitAll();
+                    form.loginPage("/loginPage");
                 })
-//                .logout(logout -> {
-//                    logout.logoutUrl("");
-//                })
-                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .build();
     }
 

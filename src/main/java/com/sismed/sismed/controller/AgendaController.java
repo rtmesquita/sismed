@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class AgendaController {
-    @RequestMapping("/agenda")
+    @RequestMapping("/agendaPage")
     public String index () {
         return "agenda/index";
     }

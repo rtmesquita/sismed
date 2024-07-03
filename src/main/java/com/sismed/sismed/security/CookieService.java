@@ -15,14 +15,8 @@ public class CookieService {
         httpServletResponse.addCookie(cookie);
     }
 
-    public static void updateCookie(HttpServletResponse httpServletResponse, Cookie cookie, String valor, int tempoExpiracao) {
-        cookie.setValue(valor);
-        cookie.setMaxAge(tempoExpiracao);
-        httpServletResponse.addCookie(cookie);
-    }
-
     public static void removeCookie(HttpServletResponse httpServletResponse, Cookie cookie) {
-        cookie.setMaxAge(-1);
+        cookie.setMaxAge(0);
         httpServletResponse.addCookie(cookie);
     }
 

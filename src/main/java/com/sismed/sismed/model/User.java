@@ -1,6 +1,7 @@
 package com.sismed.sismed.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Null;
 import jakarta.validation.constraints.Size;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -21,11 +22,13 @@ public class User implements UserDetails {
     @Size(max = 100)
     private String password;
     @Size(max = 20)
+    @Null
     private String role;
 
     public User() {
 
     }
+
     public User(String login, String password, String role) {
         this.login = login;
         this.password = password;
@@ -48,9 +51,11 @@ public class User implements UserDetails {
     // Métodos da Interface UserDetails para gerenciamento do Spring Security
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        if (role.equals("ADMIN")) return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"), new SimpleGrantedAuthority("ROLE_MEDICO"));
-        else if (role.equals("MEDICO")) return List.of(new SimpleGrantedAuthority("ROLE_MEDICO"));
-        else return null;
+        if (role != null) {
+            if (role.equals("ADMIN")) return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"), new SimpleGrantedAuthority("ROLE_MEDICO"));
+            else if (role.equals("MEDICO")) return List.of(new SimpleGrantedAuthority("ROLE_MEDICO"));
+        }
+        return null;
     }
 
     @Override

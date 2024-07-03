@@ -45,7 +45,7 @@ header{
 
 }
 
-#loginButton{
+#logoutButton{
     height: 50px;
     width: 75px;
     border-radius: 20%;
@@ -53,7 +53,7 @@ header{
     transition: 0.5s;
 
 }
-#loginButton:hover{
+#logoutButton:hover{
     background-color: #008080;
     cursor: pointer;
     color: white;
