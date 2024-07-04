@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,15 +38,46 @@ public class AtendimentoController {
     // Visualização
     @RequestMapping("/visualizarPage")
     public ModelAndView visualizarAtendimentosPage() {
-
-        List<Atendimento> atendimentos = atendimentoRepository.findAll();
-
-        return new ModelAndView("atendimento/listar")
-                .addObject("atendimentos", atendimentos)
-                .addObject("pacientes", pacienteRepository.findAll())
+        return new ModelAndView("atendimento/medicos")
                 .addObject("medicos", medicoRepository.findAll())
                 .addObject("user", new HeaderDTO(authenticationController.getUsuarioLogado()));
     }
+
+    @PostMapping("/receberMedico")
+    public ModelAndView receberMedico(Long id) {
+
+        List<Object[]> objetos = atendimentoRepository.findAllPacientesByMedicoId(id);
+        List<Paciente> pacientes = new ArrayList<>();
+
+        for (Object[] row : objetos) {
+            Paciente paciente = new Paciente();
+            paciente.setId((Long) row[0]);
+            paciente.setNome((String) row[1]);
+            paciente.setSexo((Character) row[2]);
+            paciente.setDataNascimento((LocalDate) row[3]);
+            pacientes.add(paciente);
+        }
+
+        return new ModelAndView("atendimento/pacientes")
+                .addObject("pacientes", pacientes)
+                .addObject("user", new HeaderDTO(authenticationController.getUsuarioLogado()));
+    }
+
+    @PostMapping("/receberPaciente")
+    public ModelAndView receberPaciente(Long id) {
+
+        List<Atendimento> atendimentos = atendimentoRepository.findAllByPaciente_Id(id);
+
+        return new ModelAndView("atendimento/datas")
+                .addObject("atendimentos", atendimentos)
+                .addObject("user", new HeaderDTO(authenticationController.getUsuarioLogado()));
+    }
+
+    @PostMapping("/receberData")
+    public ModelAndView receberData(Long id) {
+        return visualizarAtendimentoPage(atendimentoRepository.findById(id).get());
+    }
+
     public ModelAndView visualizarAtendimentoPage(Atendimento atendimento) {
         return new ModelAndView("atendimento/visualizacao")
                 .addObject("atendimento", atendimento)
@@ -74,7 +107,7 @@ public class AtendimentoController {
 
         Atendimento atendimento = new Atendimento(paciente.get(), medico.get(), atendimentoDTO);
 
-//        atendimento = atendimentoRepository.save(atendimento);
+        atendimento = atendimentoRepository.save(atendimento);
 
         return visualizarAtendimentoPage(atendimento);
     }

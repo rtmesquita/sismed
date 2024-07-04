@@ -15,27 +15,22 @@
 
             <div class="main-content">
                 <div class="header">
-                    <h1>Usuários</h1>
+                    <h1>Pacientes</h1>
                 </div>
                 <table class="user-table">
                     <tr>
                         <th>Nome</th>
-                        <th>Usuário</th>
-                        <th>Perfil</th>
+                        <th>Sexo</th>
+                        <th>Data de nacimento</th>
                     </tr>
-                    <c:forEach var="user" items="${users}">
+                    <c:forEach var="paciente" items="${pacientes}">
                         <tr>
-                            <td>${user.nome}</td>
+                            <td>${paciente.nome}</td>
                             <td>
-                                ${user.login}
+                                ${paciente.sexo}
                             </td>
                             <td>
-                                <c:if test="${not empty user.role}">
-                                    ${user.role}
-                                </c:if>
-                                <c:if test="${empty user.role}">
-                                    Pefil não informado.
-                                </c:if>
+                                ${paciente.dataNascimento}
                             </td>
                         </tr>
                     </c:forEach>

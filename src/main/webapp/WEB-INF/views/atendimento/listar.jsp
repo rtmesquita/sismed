@@ -15,32 +15,35 @@
             <div class="main-content">
                 <div class="header">
                     <h1>Selecione o atendimento</h1>
-                    <span>${atendimentos}</span>
+<%--                    <span>${atendimentos}</span>--%>
                 </div>
                 <div class="form-container">
                     <div class="select-container">
                         <label for="medicos">Médicos</label>
-                        <c:forEach items="${medicos}" var="medico">
+
                         <select id="medicos" class="select-option">
                             <option value="${null}">Selecione...</option>
-                            <option value="${medico.id}">${medico.nome}</option>
+                            <c:forEach items="${medicos}" var="medico">
+                                <option value="${medico.id}">${medico.nome}</option>
+                            </c:forEach>
                         </select>
-                        </c:forEach>
 
                         <label for="pacientes">Pacientes</label>
-                        <c:forEach items="${pacientes}" var="paciente">
+
                             <select id="pacientes" class="select-option">
                                 <option value="${null}">Selecione...</option>
-                                <option value="${paciente.id}">${paciente.nome}</option>
+                                <c:forEach items="${pacientes}" var="paciente">
+                                    <option value="${paciente.id}">${paciente.nome}</option>
+                                </c:forEach>
                             </select>
-                        </c:forEach>
 
-                        <label for="datas">Datas</label>
-                        <select id="datas" class="select-option">
-                            <option value="option7">Option 7</option>
-                            <option value="option8">Option 8</option>
-                            <option value="option9">Option 9</option>
-                        </select>
+
+<%--                        <label for="datas">Datas</label>--%>
+<%--                        <select id="datas" class="select-option">--%>
+<%--                            <option value="option7">Option 7</option>--%>
+<%--                            <option value="option8">Option 8</option>--%>
+<%--                            <option value="option9">Option 9</option>--%>
+<%--                        </select>--%>
                     </div>
                 </div>
             </div>

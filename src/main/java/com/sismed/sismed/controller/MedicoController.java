@@ -4,33 +4,41 @@ import com.sismed.sismed.model.Medico;
 import com.sismed.sismed.repository.MedicoRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 import java.util.Optional;
 
 @Controller
+@RequestMapping("/medico")
 public class MedicoController {
 
     @Autowired
     MedicoRepository medicoRepository;
 
-    @PostMapping("/cadastraMedico")
-    public ResponseEntity cadastrarMedico(@Valid Medico medico) {
+    @RequestMapping("/cadastrarPage")
+    public ModelAndView cadastrarMedicoPage() {
 
-        medico = this.medicoRepository.save(medico);
+        return new ModelAndView("novoCadastro/medico");
+    }
+    @PostMapping("/cadastrar")
+    public ModelAndView cadastrarMedico(@Valid Medico medico) {
 
-        return ResponseEntity.ok(medico);
+        this.medicoRepository.save(medico);
+
+        return new ModelAndView("redirect:/medico/listarPage");
     }
 
-    @PostMapping("/listaMedicos")
-    public ResponseEntity listarMedicos() {
+    @RequestMapping("/listarPage")
+    public ModelAndView visualizarMedicos() {
 
         List<Medico> medicos = this.medicoRepository.findAll();
 
-        return ResponseEntity.ok(medicos);
+        return new ModelAndView("novoCadastro/listarMedicos")
+                .addObject("medicos", medicos);
     }
 
     public Optional<Medico> getMedico(@Valid Long id) {

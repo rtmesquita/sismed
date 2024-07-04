@@ -26,12 +26,12 @@
                 <h2>Preencher Nova Ficha</h2>
                 <form class="form-group" action="/sismed/atendimento/cadastrar" method="post">
                     <label>Paciente:</label>
-                    <c:forEach items="${atendimentoDTO.pacientes}" var="paciente">
                         <select name="idPaciente">
                             <option value="${null}">Selecione...</option>
-                            <option value="${paciente.id}">${paciente.nome}</option>
+                            <c:forEach items="${atendimentoDTO.pacientes}" var="paciente">
+                                <option value="${paciente.id}">${paciente.nome}</option>
+                            </c:forEach>
                         </select>
-                    </c:forEach>
 
                     <label>Médico:</label>
                     <select name="idMedico" id="medico">

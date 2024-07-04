@@ -1,6 +1,5 @@
 package com.sismed.sismed.security;
 
-import jakarta.servlet.DispatcherType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -30,14 +29,26 @@ public class SecurityConfigurations {
                 .authorizeHttpRequests(authorize ->
                         authorize
                                 // Atendimento
-                                .requestMatchers("/atendimento/cadastrarPage").hasAnyRole("MEDICO", "ADMIN")
-                                .requestMatchers("/atendimento/visualizarPage").hasAnyRole("MEDICO", "ADMIN")
-                                .requestMatchers(HttpMethod.POST, "/atendimento/cadastrar").hasAnyRole("MEDICO", "ADMIN")
+                                .requestMatchers("/atendimento/cadastrarPage").hasAnyRole("MEDICO")
+                                .requestMatchers("/atendimento/visualizarPage").hasAnyRole("MEDICO")
+                                .requestMatchers("/atendimento/receberMedico").hasAnyRole("MEDICO")
+                                .requestMatchers("/atendimento/receberPaciente").hasAnyRole("MEDICO")
+                                .requestMatchers("/atendimento/receberData").hasAnyRole("MEDICO")
+                                .requestMatchers(HttpMethod.POST, "/atendimento/cadastrar").hasAnyRole("MEDICO")
                                 // Cadastro de usuário
                                 .requestMatchers("/cadastrarPage").hasRole("ADMIN")
                                 .requestMatchers("/cadastrar").hasRole("ADMIN")
                                 // Outras
+                                .requestMatchers("/medico/cadastrarPage").authenticated()
+                                .requestMatchers("/paciente/cadastrarPage").authenticated()
+                                .requestMatchers("/medico/listarPage").authenticated()
+                                .requestMatchers("/paciente/listarPage").authenticated()
+                                .requestMatchers("/medico/cadastrar").authenticated()
+                                .requestMatchers("/paciente/cadastrar").authenticated()
+                                .requestMatchers("/medico/listar").authenticated()
+                                .requestMatchers("/paciente/listar").authenticated()
                                 .requestMatchers("/").authenticated()
+                                .requestMatchers(HttpMethod.POST, "/deslogar").authenticated()
                                 .anyRequest().permitAll()
                 )
                 .formLogin(form -> {

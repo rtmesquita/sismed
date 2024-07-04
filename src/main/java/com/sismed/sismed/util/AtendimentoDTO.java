@@ -1,7 +1,5 @@
 package com.sismed.sismed.util;
 
-import com.sismed.sismed.model.Atendimento;
-
 public class AtendimentoDTO {
 
     private Long idPaciente;

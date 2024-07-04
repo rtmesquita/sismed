@@ -14,32 +14,30 @@
 
     <div class="cadastro-box">
         <div id="titulo">
-            Cadastrar
+            Cadastrar Usuário
         </div>
         <form action="/sismed/usuario/cadastrar" method="post">
-            <div id="senha">
-                <label for="nome-box">Nome</label>
+            <div class="campo">
+                <label class="campo-box" for="nome-box">Nome</label>
                 <input type="text" id="nome-box" name="nome">
             </div>
-            <div id="usuário">
-                <label for="usuário-box">Usuário</label>
+            <div class="campo">
+                <label class="campo-box" for="usuário-box">Usuário</label>
                 <input type="text" id="usuário-box" name="login">
             </div>
-            <div id="senha">
-                <label for="senha-box">Senha</label>
+            <div class="campo">
+                <label class="campo-box" for="senha-box">Senha</label>
                 <input type="password" id="senha-box" name="password">
             </div>
-            <div id="usuário">
-                <label for="perfil-box">Perfil</label>
+            <div class="campo">
+                <label class="campo-box" for="perfil-box">Perfil</label>
                 <select name="role" id="perfil-box">
                     <option type="text" value="SECRETARIO">Secretário</option>
                     <option type="text" value="MEDICO">Médico</option>
                     <option type="text" value="ADMIN">Administrador</option>
                 </select>
             </div>
-            <%
-            %>
-            <input id="login-button" type="submit" value="Submit">
+            <button class="campo campo-box">Salvar</button>
         </form>
 
     </div>

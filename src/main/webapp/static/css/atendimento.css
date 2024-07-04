@@ -209,4 +209,12 @@ header{
     display: none;
 }
 
+.campo{
+    display: flex;
+    flex-direction: column;
+}
+.campo-box{
+    margin: 5px;
+}
+
 

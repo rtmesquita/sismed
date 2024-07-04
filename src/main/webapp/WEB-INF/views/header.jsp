@@ -24,10 +24,16 @@
           </li>
         </div>
         <div class="" id="opcaoCadastro">
-          <li class="opcao">Novo cadastro
+          <li class="opcao"> Médico
             <ul>
-              <li class="opcao"><a href="/sismed/novoCadastro/paciente"> Cadastrar novo paciente</a></li>
-              <li class="opcao"><a href="/sismed/novoCadastro/medico"> Cadastrar novo médico</a></li>
+              <li class="opcao"><a href="/sismed/medico/cadastrarPage"> Cadastrar novo médico</a></li>
+              <li class="opcao"><a href="/sismed/medico/listarPage"> Listar médicos</a></li>
+            </ul>
+          </li>
+          <li class="opcao">Paciente
+            <ul>
+              <li class="opcao"><a href="/sismed/paciente/cadastrarPage"> Cadastrar novo paciente</a></li>
+              <li class="opcao"><a href="/sismed/paciente/listarPage"> Listar pacientes</a></li>
             </ul>
           </li>
         </div>

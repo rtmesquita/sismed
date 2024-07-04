@@ -127,6 +127,7 @@ header{
     border-color: black;
     border-radius: 20px;
     border: 2px solid #000;
+    margin-top: 150px;
 
 }
 
@@ -161,4 +162,29 @@ header{
     background-color: #008080;
     cursor: pointer;
     color: white;
+}
+
+.user-table {
+    /* General table styles */
+    border-collapse: collapse; /* Combine table borders */
+    width: 100%; /* Make table fill container width */
+    margin: 0 auto; /* Center table horizontally */
+}
+
+.user-table th,
+.user-table td {
+    /* Styles for table cells */
+    padding: 10px; /* Add padding to cells */
+    border: 1px solid #ddd; /* Add a thin border */
+    text-align: left; /* Align content to the left by default */
+}
+
+.user-table th {
+    /* Styles for table headers */
+    background-color: #f2f2f2; /* Add a light background to headers */
+    font-weight: bold; /* Make headers bold */
+}
+
+.main-content {
+    margin-top: 150px;
 }

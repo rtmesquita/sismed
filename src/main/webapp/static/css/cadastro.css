@@ -138,11 +138,11 @@ header{
     display: flex;
     flex-direction: column;
 }
-#senha{
+.campo{
     display: flex;
     flex-direction: column;
 }
-#usuário-box{
+.campo-box{
     margin: 5px;
 }
 

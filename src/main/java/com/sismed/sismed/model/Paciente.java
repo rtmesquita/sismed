@@ -3,7 +3,8 @@ package com.sismed.sismed.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 @Table(name = "paciente")
@@ -15,11 +16,18 @@ public class Paciente {
     private String nome;
     private Character sexo;
     @Column(name = "data_nascimento")
-    private Date dataNascimento;
+    private LocalDate dataNascimento;
 
     public Paciente() {}
 
-    public Paciente(String nome, Character sexo, Date dataNascimento) {
+    public Paciente(String nome, Character sexo, LocalDate dataNascimento) {
+        this.nome = nome;
+        this.sexo = sexo;
+        this.dataNascimento = dataNascimento;
+    }
+
+    public Paciente(Long id, String nome, Character sexo, LocalDate dataNascimento) {
+        this.id = id;
         this.nome = nome;
         this.sexo = sexo;
         this.dataNascimento = dataNascimento;
@@ -49,12 +57,14 @@ public class Paciente {
         this.sexo = sexo;
     }
 
-    public Date getDataNascimento() {
+    public LocalDate getDataNascimento() {
         return dataNascimento;
     }
 
-    public void setDataNascimento(Date dataNascimento) {
+    public void setDataNascimento(LocalDate dataNascimento) {
         this.dataNascimento = dataNascimento;
+    }public void setDataNascimento(String dataNascimento) {
+        this.dataNascimento = LocalDate.parse(dataNascimento, DateTimeFormatter.ofPattern("yyy-MM-dd"));
     }
 
     @Override

@@ -12,6 +12,12 @@
 </head>
 <body>
 <%@ include file="/WEB-INF/views/header.jsp" %>
+<span>${mensagem}</span>
+<script>
+    if (${mensagem} != null) {
+        alert(${mensagem});
+    }
+</script>
 
     <div id="central-box">
         <H1>Seja Bem vindo</H1>
