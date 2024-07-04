@@ -12,16 +12,15 @@
 </head>
 <body>
 <%@ include file="/WEB-INF/views/header.jsp" %>
-<span>${mensagem}</span>
-<script>
-    if (${mensagem} != null) {
-        alert(${mensagem});
-    }
-</script>
-
+<div class="container">
     <div id="central-box">
-        <H1>Seja Bem vindo</H1>
-        <h2>Faça Login para continuar</h2>
+        <H1 style="margin-top: 150px">Sejam Bem Vindos ao SisMed</H1>
+        <div class="agenda">
+            <img id="ilustracao" src="<c:url value="/static/img/calendario.png"/>"  alt=" ">
+            <h1>Atualizações futuras: <br>Criação e integração de uma agenda</h1>
+            <h3>imagem meramente ilustrativa</h3>
+        </div>
     </div>
-</body>>
+</div>
+</body>
 </html>

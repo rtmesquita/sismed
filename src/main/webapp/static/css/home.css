@@ -117,3 +117,30 @@ header{
     align-items: center;
     
 }
+
+.container{
+    height: 100%;
+    width: 100%;
+
+}
+#central-box{
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+
+}
+.agenda{
+    margin-top: 10px;
+    height: 30%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+#ilustracao{
+    width: 50%;
+}
