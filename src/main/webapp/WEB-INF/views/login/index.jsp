@@ -22,7 +22,7 @@
             <div id="titulo">
                 Login
             </div>
-            <form action="login" method="post">
+            <form action="logar" method="post">
                 <div id="usuário">
                     <label for="usuário-box">Usuário</label>
                     <input type="text" id="usuário-box" name="login">

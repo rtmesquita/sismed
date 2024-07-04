@@ -2,13 +2,13 @@ package com.sismed.sismed.util;
 
 import com.sismed.sismed.model.User;
 
-public class UserDTO {
+public class HeaderDTO {
     public String nome;
     public String isUsuario;
     public String isMedico;
     public String isAdmin;
 
-    public UserDTO(User user) {
+    public HeaderDTO(User user) {
         this.nome = user.getNome();
 
         this.isUsuario = "1";
@@ -59,7 +59,7 @@ public class UserDTO {
 
     @Override
     public String toString() {
-        return "UserDTO{" +
+        return "HeaderDTO{" +
                 "nome='" + nome + '\'' +
                 ", isUsuario=" + isUsuario +
                 ", isMedico=" + isMedico +

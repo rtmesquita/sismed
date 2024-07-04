@@ -58,6 +58,10 @@ public class User implements UserDetails {
         return role;
     }
 
+    public String getLogin() {
+        return login;
+    }
+
     public void setRole(String role) {
         this.role = role;
     }

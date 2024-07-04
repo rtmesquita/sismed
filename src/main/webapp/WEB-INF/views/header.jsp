@@ -34,8 +34,8 @@
         <div class="" id="opcaoUsuario">
           <li class="opcao">Usuário
             <ul>
-              <li class="opcao"><a href="/sismed/novoCadastro/paciente"> Cadastrar novo usuário</a></li>
-              <li class="opcao"><a href="/sismed/novoCadastro/medico"> Listar usuários</a></li>
+              <li class="opcao"><a href="/sismed/usuario/cadastrarPage"> Cadastrar novo usuário</a></li>
+              <li class="opcao"><a href="/sismed/usuario/visualizarPage"> Listar usuários</a></li>
             </ul>
           </li>
         </div>

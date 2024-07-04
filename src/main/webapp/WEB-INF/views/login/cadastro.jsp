@@ -9,18 +9,18 @@
     <link rel="stylesheet" type="text/css" href="<c:url value="/static/css/cadastro.css"/> ">
 </head>
 <body>
-<header>
-    <img id="logo" src="<c:url value="/static/img/logo.jpg"/>" alt="">
-
-
-</header>
+<%@ include file="/WEB-INF/views/header.jsp" %>
 <div class="container">
 
     <div class="cadastro-box">
         <div id="titulo">
             Cadastrar
         </div>
-        <form action="/sismed/auth/register" method="post">
+        <form action="/sismed/usuario/cadastrar" method="post">
+            <div id="senha">
+                <label for="nome-box">Nome</label>
+                <input type="text" id="nome-box" name="nome">
+            </div>
             <div id="usuário">
                 <label for="usuário-box">Usuário</label>
                 <input type="text" id="usuário-box" name="login">
@@ -30,8 +30,6 @@
                 <input type="password" id="senha-box" name="password">
             </div>
             <div id="usuário">
-<%--                <label for="usuário-box">Perfil</label>--%>
-<%--                <input type="text" id="role-box" name="role">--%>
                 <label for="perfil-box">Perfil</label>
                 <select name="role" id="perfil-box">
                     <option type="text" value="SECRETARIO">Secretário</option>

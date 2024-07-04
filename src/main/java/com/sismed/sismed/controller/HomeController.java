@@ -1,9 +1,7 @@
 package com.sismed.sismed.controller;
 
-import com.sismed.sismed.model.User;
-import com.sismed.sismed.util.UserDTO;
+import com.sismed.sismed.util.HeaderDTO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -17,6 +15,6 @@ public class HomeController {
     public ModelAndView home () {
 
         return new ModelAndView("home/index").addObject("user",
-                new UserDTO(authenticationController.getUsuarioLogado()));
+                new HeaderDTO(authenticationController.getUsuarioLogado()));
     }
 }

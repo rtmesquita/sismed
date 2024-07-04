@@ -31,13 +31,17 @@ public class SecurityConfigurations {
                         authorize
                                 // Atendimento
                                 .requestMatchers("/atendimento/cadastrarPage").hasAnyRole("MEDICO", "ADMIN")
+                                .requestMatchers("/atendimento/visualizarPage").hasAnyRole("MEDICO", "ADMIN")
                                 .requestMatchers(HttpMethod.POST, "/atendimento/cadastrar").hasAnyRole("MEDICO", "ADMIN")
-
+                                // Cadastro de usuário
+                                .requestMatchers("/cadastrarPage").hasRole("ADMIN")
+                                .requestMatchers("/cadastrar").hasRole("ADMIN")
+                                // Outras
                                 .requestMatchers("/").authenticated()
                                 .anyRequest().permitAll()
                 )
                 .formLogin(form -> {
-                    form.loginPage("/loginPage");
+                    form.loginPage("/logarPage");
                 })
                 .build();
     }

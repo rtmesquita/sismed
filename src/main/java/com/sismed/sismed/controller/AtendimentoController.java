@@ -7,8 +7,8 @@ import com.sismed.sismed.repository.AtendimentoRepository;
 import com.sismed.sismed.repository.MedicoRepository;
 import com.sismed.sismed.repository.PacienteRepository;
 import com.sismed.sismed.util.AtendimentoDTO;
+import com.sismed.sismed.util.HeaderDTO;
 import com.sismed.sismed.util.NovoAtendimentoDTO;
-import com.sismed.sismed.util.UserDTO;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -36,14 +36,19 @@ public class AtendimentoController {
     // Visualização
     @RequestMapping("/visualizarPage")
     public ModelAndView visualizarAtendimentosPage() {
-        return new ModelAndView("atendimento/visualizacao")
-                .addObject("atendimento", null)
-                .addObject("user", new UserDTO(authenticationController.getUsuarioLogado()));
+
+        List<Atendimento> atendimentos = atendimentoRepository.findAll();
+
+        return new ModelAndView("atendimento/listar")
+                .addObject("atendimentos", atendimentos)
+                .addObject("pacientes", pacienteRepository.findAll())
+                .addObject("medicos", medicoRepository.findAll())
+                .addObject("user", new HeaderDTO(authenticationController.getUsuarioLogado()));
     }
     public ModelAndView visualizarAtendimentoPage(Atendimento atendimento) {
         return new ModelAndView("atendimento/visualizacao")
                 .addObject("atendimento", atendimento)
-                .addObject("user", new UserDTO(authenticationController.getUsuarioLogado()));
+                .addObject("user", new HeaderDTO(authenticationController.getUsuarioLogado()));
     }
 
 
@@ -57,9 +62,9 @@ public class AtendimentoController {
         NovoAtendimentoDTO novoAtendimentoDTO
                 = new NovoAtendimentoDTO(pacientes, medicos);
 
-        return new ModelAndView("atendimento/formulario")
+        return new ModelAndView("atendimento/cadastro")
                 .addObject("atendimentoDTO", novoAtendimentoDTO)
-                .addObject("user", new UserDTO(authenticationController.getUsuarioLogado()));
+                .addObject("user", new HeaderDTO(authenticationController.getUsuarioLogado()));
     }
     @PostMapping("/cadastrar")
     public ModelAndView cadastrarAtendimento(@Valid AtendimentoDTO atendimentoDTO) {
