@@ -1,12 +1,22 @@
 package com.sismed.sismed.controller;
 
+import com.sismed.sismed.model.User;
+import com.sismed.sismed.util.UserDTO;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class HomeController {
+
+    @Autowired
+    AuthenticationController authenticationController;
     @RequestMapping("/")
-    public String index () {
-        return "home/index";
+    public ModelAndView home () {
+
+        return new ModelAndView("home/index").addObject("user",
+                new UserDTO(authenticationController.getUsuarioLogado()));
     }
 }

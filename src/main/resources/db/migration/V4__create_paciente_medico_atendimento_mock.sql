@@ -8,6 +8,6 @@ INSERT INTO medico
 VALUES (1, 'Roberto', '123456DF', 'Obstetrícia');
 
 INSERT INTO atendimento
-    (id, id_paciente, id_medico, queixa, historia, tratamento_medico, alergia, cirurgia, gestante, fumante)
+    (id, id_paciente, id_medico, queixa, historia, tratamento_medico, alergia, cirurgia, gestante, fumante, data_atendimento)
 VALUES
-    (1, 1, 1, 'Tosse', 'O paciente está se quiexando de tosse a 3 dias.', 0, '', 0, 1, 0);
+    (1, 1, 1, 'Tosse', 'O paciente está se quiexando de tosse a 3 dias.', 0, '', 0, 1, 0, '2024-07-02');

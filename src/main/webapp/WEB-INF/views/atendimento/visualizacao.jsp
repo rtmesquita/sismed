@@ -2,40 +2,35 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <%--    <link rel="stylesheet" type="text/css" href="../../..${pageContext.request.contextPath}/static/css/home.css">--%>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" type="text/css" href="<c:url value="/static/css/atendimento.css"/> ">
-    <title>Document</title>
-</head>
-<body>
-<header>
-    <div id="top-bar">
-        <img id="logo" src="<c:url value="/static/img/logo.jpg"/>" alt="">
-        <ul class="menu_principal">
-            <li class="opcao"><a href="/sismed/">Home</a></li>
-            <li class="opcao"> Atendimento
-                <ul>
-                    <li class="opcao"><a href="/sismed/atendimento">Nova Anamnese</a></li>
-                    <li class="opcao"><a href="/sismed/atendimento/visualizacao">Visualizar Anamnese</a></li>
-                </ul>
-            </li>
-            <li class="opcao">Novo cadastro
-                <ul>
-                    <li class="opcao"><a href="/sismed/novoCadastro/paciente"> Cadastrar novo paciente</a></li>
-                    <li class="opcao"><a href="/sismed/novoCadastro/medico"> Cadastrar novo médico</a></li>
-                </ul>
-            </li>
-        </ul>
+        <link rel="stylesheet" type="text/css" href="<c:url value="/static/css/atendimento.css"/> ">
+        <title>Document</title>
+    </head>
+    <body>
+        <%@ include file="/WEB-INF/views/header.jsp" %>
+        <div class="container">
 
-    </div>
+            <div class="main-content">
+                <div class="header">
+                    <h1>Detalhes do Atendimento</h1>
+                </div>
+                <div class="form-container">
+                    <p><strong>Paciente:</strong> ${atendimento.paciente.nome}</p>
+                    <p><strong>Médico:</strong> ${atendimento.medico.nome}</p>
+                    <p><strong>Queixa:</strong> ${atendimento.queixa}</p>
+                    <p><strong>Histórico:</strong> ${atendimento.historia}</p>
+                    <p><strong>Tratamento Médico:</strong> ${atendimento.tratamentoMedico ? "Sim" : "Não"}</p>
+                    <p><strong>Alergia:</strong> ${atendimento.alergia}</p>
+                    <p><strong>Cirurgia:</strong> ${atendimento.cirurgia ? "Sim" : "Não"}</p>
+                    <p><strong>Gestante:</strong> ${atendimento.gestante ? "Sim" : "Não"}</p>
+                    <p><strong>Fumante:</strong> ${atendimento.fumante ? "Sim" : "Não"}</p>
+                    <p><strong>Data de Atendimento:</strong> ${atendimento.dataAtendimento}</p>
+                </div>
+            </div>
+        </div>
 
-    <button id="loginButton">Login</button>
-</header>
-
-
-
-</body>
+    </body>
 </html>

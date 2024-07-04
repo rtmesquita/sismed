@@ -29,9 +29,10 @@ public class SecurityConfigurations {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize ->
                         authorize
-                                .requestMatchers("/cadastroPage").hasRole("ADMIN")
-                                .requestMatchers(HttpMethod.POST, "/register").hasRole("ADMIN")
-                                .requestMatchers("/atendimentoPage").hasAnyRole("MEDICO", "ADMIN")
+                                // Atendimento
+                                .requestMatchers("/atendimento/cadastrarPage").hasAnyRole("MEDICO", "ADMIN")
+                                .requestMatchers(HttpMethod.POST, "/atendimento/cadastrar").hasAnyRole("MEDICO", "ADMIN")
+
                                 .requestMatchers("/").authenticated()
                                 .anyRequest().permitAll()
                 )

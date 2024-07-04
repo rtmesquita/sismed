@@ -11,12 +11,13 @@ import java.util.Collection;
 import java.util.List;
 
 @Entity
-@Table(name = "usuario")
+@Table(name = "user")
 // Vinculando o Usuario como User de autenticação: interface UserDetails
 public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    private String nome;
     @Size(max = 100)
     private String login;
     @Size(max = 100)
@@ -29,7 +30,8 @@ public class User implements UserDetails {
 
     }
 
-    public User(String login, String password, String role) {
+    public User(String nome, String login, String password, String role) {
+        this.nome = nome;
         this.login = login;
         this.password = password;
         this.role = role;
@@ -42,6 +44,18 @@ public class User implements UserDetails {
 
     public void setLogin(String login) {
         this.login = login;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getRole() {
+        return role;
     }
 
     public void setRole(String role) {
@@ -92,6 +106,7 @@ public class User implements UserDetails {
     public String toString() {
         return "User{" +
                 "id=" + id +
+                ", nome=" + nome +
                 ", login=" + login +
                 ", password=" + password +
                 ", role=" + role +

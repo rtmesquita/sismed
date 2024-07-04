@@ -26,6 +26,7 @@ CREATE TABLE atendimento
     cirurgia BOOLEAN,
     gestante BOOLEAN,
     fumante BOOLEAN,
+    data_atendimento DATE NOT NULL,
     FOREIGN KEY (id_paciente) REFERENCES paciente(id),
     FOREIGN KEY (id_medico) REFERENCES medico(id)
 );

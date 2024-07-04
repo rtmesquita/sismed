@@ -36,6 +36,7 @@
                 <select name="role" id="perfil-box">
                     <option type="text" value="SECRETARIO">Secretário</option>
                     <option type="text" value="MEDICO">Médico</option>
+                    <option type="text" value="ADMIN">Administrador</option>
                 </select>
             </div>
             <%

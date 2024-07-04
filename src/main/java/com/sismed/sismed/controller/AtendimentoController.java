@@ -1,36 +1,76 @@
 package com.sismed.sismed.controller;
 
 import com.sismed.sismed.model.Atendimento;
+import com.sismed.sismed.model.Medico;
+import com.sismed.sismed.model.Paciente;
 import com.sismed.sismed.repository.AtendimentoRepository;
+import com.sismed.sismed.repository.MedicoRepository;
+import com.sismed.sismed.repository.PacienteRepository;
+import com.sismed.sismed.util.AtendimentoDTO;
+import com.sismed.sismed.util.NovoAtendimentoDTO;
+import com.sismed.sismed.util.UserDTO;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
+@RequestMapping("/atendimento")
 public class AtendimentoController {
 
     @Autowired
     AtendimentoRepository atendimentoRepository;
+    @Autowired
+    MedicoRepository medicoRepository;
+    @Autowired
+    PacienteRepository pacienteRepository;
 
-    @RequestMapping("/atendimentoPage")
-    public String index () {
-        return "atendimento/index";
+    @Autowired
+    AuthenticationController authenticationController;
+
+    // Visualização
+    @RequestMapping("/visualizarPage")
+    public ModelAndView visualizarAtendimentosPage() {
+        return new ModelAndView("atendimento/visualizacao")
+                .addObject("atendimento", null)
+                .addObject("user", new UserDTO(authenticationController.getUsuarioLogado()));
+    }
+    public ModelAndView visualizarAtendimentoPage(Atendimento atendimento) {
+        return new ModelAndView("atendimento/visualizacao")
+                .addObject("atendimento", atendimento)
+                .addObject("user", new UserDTO(authenticationController.getUsuarioLogado()));
     }
 
-    @RequestMapping("/atendimento/visualizacao")
-    public String visualizacao () {
-        return "atendimento/visualizacao";
+
+    // Cadastro
+    @RequestMapping("/cadastrarPage")
+    public ModelAndView cadastrarAtendimentoPage () {
+
+        List<Paciente> pacientes = pacienteRepository.findAll();
+        List<Medico> medicos = medicoRepository.findAll();
+
+        NovoAtendimentoDTO novoAtendimentoDTO
+                = new NovoAtendimentoDTO(pacientes, medicos);
+
+        return new ModelAndView("atendimento/formulario")
+                .addObject("atendimentoDTO", novoAtendimentoDTO)
+                .addObject("user", new UserDTO(authenticationController.getUsuarioLogado()));
     }
+    @PostMapping("/cadastrar")
+    public ModelAndView cadastrarAtendimento(@Valid AtendimentoDTO atendimentoDTO) {
 
-    @PostMapping("/listaAtendimentos")
-    public ResponseEntity listarAtendimento() {
+        Optional<Paciente> paciente = pacienteRepository.findById(atendimentoDTO.getIdPaciente());
+        Optional<Medico> medico = medicoRepository.findById(atendimentoDTO.getIdMedico());
 
-        List<Atendimento> atendimentos = atendimentoRepository.findAll();
+        Atendimento atendimento = new Atendimento(paciente.get(), medico.get(), atendimentoDTO);
 
-        return ResponseEntity.ok(atendimentos);
+//        atendimento = atendimentoRepository.save(atendimento);
+
+        return visualizarAtendimentoPage(atendimento);
     }
 }

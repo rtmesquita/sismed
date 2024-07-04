@@ -1,7 +1,11 @@
 package com.sismed.sismed.model;
 
+import com.sismed.sismed.util.AtendimentoDTO;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
+
+import java.time.*;
+
 
 @Entity
 @Table(name = "atendimento")
@@ -26,8 +30,23 @@ public class Atendimento {
     private Boolean cirurgia;
     private Boolean gestante;
     private Boolean fumante;
+    @Column(name = "data_atendimento")
+    private LocalDate dataAtendimento;
 
     public Atendimento() {}
+
+    public Atendimento(Paciente paciente, Medico medico, AtendimentoDTO atendimentoDTO) {
+        this.paciente = paciente;
+        this.medico = medico;
+        this.queixa = atendimentoDTO.getQueixa();
+        this.historia = atendimentoDTO.getHistoria();
+        this.tratamentoMedico = atendimentoDTO.getTratamentoMedico();
+        this.alergia = atendimentoDTO.getAlergia();
+        this.cirurgia = atendimentoDTO.getCirurgia();
+        this.gestante = atendimentoDTO.getGestante();
+        this.fumante = atendimentoDTO.getFumante();
+        this.dataAtendimento = LocalDate.now();
+    }
 
     public long getId() {
         return id;
@@ -109,6 +128,14 @@ public class Atendimento {
         this.fumante = fumante;
     }
 
+    public LocalDate getDataAtendimento() {
+        return dataAtendimento;
+    }
+
+    public void setDataAtendimento(LocalDate dataAtendimento) {
+        this.dataAtendimento = dataAtendimento;
+    }
+
     @Override
     public String toString() {
         return "Atendimento{" +
@@ -122,6 +149,7 @@ public class Atendimento {
                 ", cirurgia=" + cirurgia +
                 ", gestante=" + gestante +
                 ", fumante=" + fumante +
+                ", dataCadastro=" + dataAtendimento +
                 '}';
     }
 }
